@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView mNumberOfMessages;
+    TextView mNumberOfNotValidMessages;
     SharedPreferences preferences;
 
     final int MY_PERMISSIONS_REQUEST_READ_SMS = 1;
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         mNumberOfMessages = findViewById(R.id.number_of_messages);
         mNumberOfMessages.setText(String.valueOf(preferences.getInt("messagesCount", 0)));
+
+        mNumberOfNotValidMessages = findViewById(R.id.number_of_not_valid_messages);
+        mNumberOfNotValidMessages.setText(String.valueOf(preferences.getInt("messagesNotValidCount", 0)));
 
     }
 

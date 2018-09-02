@@ -68,6 +68,11 @@ public class SmsListener extends BroadcastReceiver {
                                         int numberOfMessages = preferences.getInt("messagesCount",0);
                                         numberOfMessages++;
                                         preferences.edit().putInt("messagesCount", numberOfMessages).apply();
+                                    } else {
+                                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                                        int numberOfNotValidMessages = preferences.getInt("messagesNotValidCount",0);
+                                        numberOfNotValidMessages++;
+                                        preferences.edit().putInt("messagesNotValidCount", numberOfNotValidMessages).apply();
                                     }
                                 }
                             }, new Connector.ErrorCallback() {

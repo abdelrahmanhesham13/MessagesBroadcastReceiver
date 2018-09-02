@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">نماء للأعلاف</string>
+    <string name="number_of_valid">عدد الرسائل الصالحه للأستخدام :</string>
+    <string name="number_of_not_valid">عدد الرسائل الغير صالحه للأستخدام :</string>
+</resources>
