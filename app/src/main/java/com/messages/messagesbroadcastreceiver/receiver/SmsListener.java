@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Header;
 import com.android.volley.NoConnectionError;
@@ -49,7 +50,7 @@ public class SmsListener extends BroadcastReceiver {
                         }
                         if (mMessageBody.matches("[0-9]+") && mMessageBody.length() > 2) {
                             mDate = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                             formattedDate = df.format(mDate);
                             mHashMap = new HashMap<>();
                             mHashMap.put("Serial", mMessageBody);
@@ -78,10 +79,12 @@ public class SmsListener extends BroadcastReceiver {
                             }, new Connector.ErrorCallback() {
                                 @Override
                                 public void onError(VolleyError error) {
-
+                                    if (error instanceof NoConnectionError) {
+                                        Toast.makeText(context, "No Connection", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             });
-                            String URL = "http://69.30.211.154:3000/checksticker";
+                            String URL = "http://namaafeed.info:3000/checksticker";
                             mConnector.setMap(mHashMap);
                             mConnector.getRequest("SmsListener", URL);
                         }
